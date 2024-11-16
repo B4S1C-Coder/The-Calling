@@ -6,6 +6,7 @@ public class EnemyScript : MonoBehaviour
     public float entityHealth = 100f;
     public Animator enemyAnimator;
     private bool isDying = false;
+    public ScoreManager scoreManager;
     void Start() {
         // enemyAnimator = GetComponent<Animator>();
 
@@ -44,6 +45,7 @@ public class EnemyScript : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        scoreManager.AddScore(10);
         Destroy(gameObject);
     }
 }

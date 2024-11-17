@@ -7,8 +7,12 @@ public class WeaponShooting : MonoBehaviour
     public Transform weaponTip;
     public LineRenderer lineRenderer;
 
+    private Color originalLineColor;
+
     void Start() {
         lineRenderer = GetComponent<LineRenderer>();
+
+        originalLineColor = lineRenderer.material.color;
 
         if (lineRenderer != null) {
             lineRenderer.positionCount = 2;
@@ -27,6 +31,8 @@ public class WeaponShooting : MonoBehaviour
 
     void Shoot() {
         Vector3 adjustedDirection = Quaternion.Euler(0, -90, 0) * weaponTip.forward;
+
+        lineRenderer.material.color = Color.green;
 
         Debug.Log("Shoot() called.");
 
@@ -47,6 +53,8 @@ public class WeaponShooting : MonoBehaviour
         } else {
             lineRenderer.SetPosition(1, weaponTip.position + weaponTip.forward * shootingRange);
         }
+
+        lineRenderer.material.color = originalLineColor;
 
     }
 

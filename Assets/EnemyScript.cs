@@ -7,8 +7,15 @@ public class EnemyScript : MonoBehaviour
     public Animator enemyAnimator;
     private bool isDying = false;
     public ScoreManager scoreManager;
+
+    private Renderer healthSphere;
     void Start() {
         // enemyAnimator = GetComponent<Animator>();
+        GameObject scoreManaGameObj = GameObject.Find("ScoreController");
+        scoreManager = scoreManaGameObj.GetComponent<ScoreManager>();
+
+        Transform sphereTransform = transform.Find("Sphere");
+        healthSphere = sphereTransform.GetComponent<Renderer>();
 
         if (enemyAnimator == null) {
             Debug.LogWarning("enemyAnimator is NULL.");
@@ -18,34 +25,38 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         if (entityHealth <= 0 && !isDying) {
-            // enemyAnimator.SetBool("isDead", true);
-            // Destroy(gameObject);
-
-            StartCoroutine(PlayDeathAnimation());
+            EntityDying();
+            // StartCoroutine(PlayDeathAnimation());
         }
+    }
+
+    public void EntityDying() {
+        scoreManager.AddScore(10);
+        //Test
+        enemyAnimator.SetBool("Dead", true);
+        // Destroy(gameObject, enemyAnimator.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject);
     }
 
     public void TakeDamage(float damageAmount) {
         entityHealth -= damageAmount;
+        Debug.Log("Entity Health: " + entityHealth);
 
         if (enemyAnimator != null) {
-            enemyAnimator.Rebind();
+            // enemyAnimator.Rebind();
             enemyAnimator.SetTrigger("Damage");
             Debug.Log("Trigger set.");
         }
-    }
 
-    private IEnumerator PlayDeathAnimation() {
-        isDying = true;
-        enemyAnimator.SetTrigger("Death");
-
-        while (enemyAnimator.IsInTransition(0) || enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Creep|Death_Action")) {
-            yield return null;
+        
+        if (entityHealth <= 40) {
+            healthSphere.material.color = Color.red;
+            return;
         }
 
-        yield return new WaitForSeconds(0.5f);
-
-        scoreManager.AddScore(10);
-        Destroy(gameObject);
+        if (entityHealth <= 80) {
+            healthSphere.material.color = Color.yellow;
+            return;
+        }
     }
 }

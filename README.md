@@ -14,7 +14,7 @@ Some pictures showing the game in action:
 ![Project Demo 3](./Project%20Demo%203.png)
 ![Project Demo 4](./Project%20Demo%204.png)
 
-Project and Gameplay video is also available [here](./The%20Calling.mp4).
+Project and Gameplay video is also available [here](https://drive.google.com/file/d/1egrKN_K3SIlACvQRwnLc3oP1Eh8t4rge/view?usp=sharing).
 
 ## Project Setup
 1. Download the zip file of this repository.

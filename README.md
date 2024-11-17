@@ -13,6 +13,8 @@ Some pictures showing the game in action:
 ![Project Demo 2](./Project%20Demo%202.png)
 ![Project Demo 3](./Project%20Demo%203.png)
 ![Project Demo 4](./Project%20Demo%204.png)
+![Project Demo 5](./Project%20Demo%205.png)
+![Project Demo 6](./Project%20Demo%206.png)
 
 Project and Gameplay video is also available [here](https://drive.google.com/file/d/1egrKN_K3SIlACvQRwnLc3oP1Eh8t4rge/view?usp=sharing).
 
